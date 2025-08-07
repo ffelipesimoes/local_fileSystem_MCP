@@ -1,0 +1,15 @@
+[project]
+name = "local-filesystem-mcp"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]>=1.12.1",
+]
+
+[project.scripts]
+local-filesystem-mcp = "local_filesystem_mcp.server:main"
+
+[tool.uv]
+dev-dependencies = []

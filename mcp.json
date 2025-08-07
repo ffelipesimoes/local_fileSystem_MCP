@@ -1,0 +1,16 @@
+{
+  "$schema": "https://smithery.ai/schemas/mcp.json",
+  "name": "local-filesystem-mcp",
+  "description": "Local filesystem MCP server with whitelisted CRUD operations",
+  "entrypoint": {
+    "command": "python",
+    "args": ["-m", "local_filesystem_mcp.server"],
+    "env": {
+      "MCP_FS_ALLOWED_DIRS": "/Users/felipesimoes"
+    }
+  },
+  "capabilities": ["tools"],
+  "license": "MIT",
+  "homepage": "https://smithery.ai/",
+  "keywords": ["filesystem", "local", "crud", "mcp"]
+}
