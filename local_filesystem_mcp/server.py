@@ -6,8 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import List
 
-from mcp.server import Server
-from mcp.server.lowlevel import run
+from mcp.server import Server, run
 from mcp.types import (
     ListToolsResult,
     Tool,

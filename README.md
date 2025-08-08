@@ -30,59 +30,67 @@ cd local_fileSystem_MCP
 ### Instalar dependências
 
 - Com `uv` (recomendado):
-  ```bash
-  uv sync
-  ```
+
+```bash
+uv sync
+```
+
 - Com `pip`:
 
-  ```bash
-  python -m venv .venv
-  # macOS/Linux
-  source .venv/bin/activate
-  # Windows (PowerShell)
-  .venv\\Scripts\\Activate.ps1
+```bash
+python -m venv .venv
+# macOS/Linux
+source .venv/bin/activate
+# Windows (PowerShell)
+.venv\\Scripts\\Activate.ps1
 
-  pip install -U pip
-  pip install -e .
-  ```
+pip install -U pip
+pip install -e .
+```
 
 ### Configurar diretórios permitidos (whitelist)
 
 Defina `MCP_FS_ALLOWED_DIRS` com os diretórios absolutos que o servidor poderá acessar.
 
 - macOS/Linux (separador `:`):
-  ```bash
-  export MCP_FS_ALLOWED_DIRS="$HOME:/tmp"
-  ```
+
+```bash
+export MCP_FS_ALLOWED_DIRS="$HOME:/tmp"
+```
+
 - Windows (separador `;`):
-  ```powershell
-  setx MCP_FS_ALLOWED_DIRS "%USERPROFILE%;C:\\Temp"
-  ```
+
+```powershell
+setx MCP_FS_ALLOWED_DIRS "%USERPROFILE%;C:\\Temp"
+```
 
 ### Executar o servidor
 
 - Via script instalado:
-  ```bash
-  MCP_FS_ALLOWED_DIRS="$HOME" local-filesystem-mcp
-  ```
+
+```bash
+MCP_FS_ALLOWED_DIRS="$HOME" local-filesystem-mcp
+```
+
 - Ou via módulo Python:
-  ```bash
-  MCP_FS_ALLOWED_DIRS="$HOME" python -m local_filesystem_mcp.server
-  ```
+
+```bash
+MCP_FS_ALLOWED_DIRS="$HOME" python -m local_filesystem_mcp.server
+```
 
 ## Quickstart (Local)
 
 1. Install dependencies:
 
-   ```bash
-   uv sync
-   ```
+```bash
+uv sync
+```
 
-2. Run the server:
+1. Run the server:
 
-   ```bash
-   MCP_FS_ALLOWED_DIRS="$HOME" python -m local_filesystem_mcp.server
-   ```
+```bash
+MCP_FS_ALLOWED_DIRS="$HOME" python -m local_filesystem_mcp.server
+```
 
 ## Smithery Manifest
 
@@ -96,6 +104,26 @@ Como usar no Smithery:
 - Importe o `mcp.json` ao criar um servidor MCP na plataforma.
 - Ajuste a variável `MCP_FS_ALLOWED_DIRS` no ambiente do Smithery.
 - Mais detalhes na plataforma [Smithery](https://smithery.ai/).
+
+## Docker
+
+### Build
+
+```bash
+docker build -t local-filesystem-mcp:latest .
+```
+
+### Run
+
+```bash
+docker run --rm -it \
+  -e MCP_FS_ALLOWED_DIRS="/data" \
+  -v "$HOME":/data \
+  -p 3000:3000 \
+  local-filesystem-mcp:latest
+```
+
+O servidor será iniciado e acessará apenas os diretórios apontados por `MCP_FS_ALLOWED_DIRS` (no exemplo, `/data`, montado a partir do seu `$HOME`).
 
 ## Client Example
 
