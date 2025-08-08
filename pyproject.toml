@@ -10,6 +10,7 @@ dependencies = [
 
 [project.scripts]
 local-filesystem-mcp = "local_filesystem_mcp.server:main"
+local-filesystem-mcp-http = "local_filesystem_mcp.http_server:main"
 
 [tool.uv]
 dev-dependencies = []

@@ -12,7 +12,7 @@ runtime:
     command: python
     args:
       - -m
-      - local_filesystem_mcp.server
+      - local_filesystem_mcp.http_server
   env:
     - name: MCP_FS_ALLOWED_DIRS
       value: /data
@@ -25,5 +25,3 @@ keywords:
   - local
   - crud
   - mcp
-
-
