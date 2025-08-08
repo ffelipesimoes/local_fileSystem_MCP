@@ -105,6 +105,13 @@ The sample `main.py` demonstrates connecting to a remote MCP server. To test thi
 mcp dev -c mcp.json
 ```
 
+Para usar `main.py` com o servidor remoto do Smithery, defina a variável de ambiente com segurança:
+
+```bash
+export SMITHERY_API_KEY="<seu_api_key>"    # use um secret manager quando possível
+python main.py
+```
+
 ## Environment
 
 - `MCP_FS_ALLOWED_DIRS`: absolute directories that the server can access.

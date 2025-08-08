@@ -2,13 +2,18 @@ import mcp
 from mcp.client.streamable_http import streamablehttp_client
 import json
 import base64
+import os
+import sys
 
 config = {
   "logLevel": "info"
 }
 # Encode config in base64
 config_b64 = base64.b64encode(json.dumps(config).encode()).decode()
-smithery_api_key = "1755bcc3-83c5-46ce-8da7-5f320b4692cc"
+smithery_api_key = os.getenv("SMITHERY_API_KEY")
+if not smithery_api_key:
+    sys.stderr.write("Missing SMITHERY_API_KEY environment variable. Please set it securely and retry.\n")
+    sys.exit(1)
 
 # Create server URL
 url = f"https://server.smithery.ai/@cyanheads/filesystem-mcp-server/mcp?config={config_b64}&api_key={smithery_api_key}&profile=straight-gull-b8R60a"
