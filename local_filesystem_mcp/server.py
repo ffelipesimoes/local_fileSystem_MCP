@@ -6,7 +6,12 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import List
 
-from mcp.server import Server, run
+from mcp.server import Server
+from mcp.server.lowlevel.server import (
+    stdio_server,
+    InitializationOptions,
+)
+from . import __version__
 from mcp.types import (
     ListToolsResult,
     Tool,
@@ -257,7 +262,16 @@ async def handle_call_tool(name: str, arguments: dict):
 
 
 async def _run_async() -> None:
-    await run(server)
+    async with stdio_server() as (read_stream, write_stream):
+        await server.run(
+            read_stream,
+            write_stream,
+            InitializationOptions(
+                server_name="local-filesystem-mcp",
+                server_version=__version__,
+                capabilities={"tools": {}},
+            ),
+        )
 
 
 if __name__ == "__main__":
